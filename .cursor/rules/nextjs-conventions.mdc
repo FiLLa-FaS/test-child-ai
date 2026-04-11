@@ -1,0 +1,85 @@
+---
+description: Next.js 15 App Router conventions — routing, layouts, Server/Client Components, data fetching
+globs: src/**/*.{ts,tsx}
+alwaysApply: false
+---
+
+# Next.js 15 App Router Conventions
+
+## File Conventions
+
+- `app/layout.tsx` — root layout, wraps all pages, must include `<html>` and `<body>`
+- `app/page.tsx` — route segment UI, Server Component by default
+- `app/loading.tsx` — Suspense boundary for the segment
+- `app/error.tsx` — error boundary (`'use client'` required)
+- `app/not-found.tsx` — 404 UI
+- `app/[slug]/page.tsx` — dynamic segment
+
+## Server vs Client Components
+
+Default is **Server Component**. Add `'use client'` only when needed:
+
+```tsx
+// ✅ Server Component — data fetching, no hooks/events
+export default async function Page() {
+  const data = await fetch('https://api.example.com/data').then(r => r.json())
+  return <main>{data.title}</main>
+}
+
+// ✅ Client Component — interactivity, hooks, browser APIs
+'use client'
+import { useState } from 'react'
+export function Counter() {
+  const [count, setCount] = useState(0)
+  return <button onClick={() => setCount(c => c + 1)}>{count}</button>
+}
+```
+
+## Data Fetching
+
+```tsx
+// ✅ Fetch with caching control
+const data = await fetch('https://api.example.com', {
+  cache: 'force-cache',        // SSG-like
+  next: { revalidate: 60 },   // ISR — revalidate every 60s
+})
+
+// ✅ Dynamic (no cache)
+const data = await fetch('https://api.example.com', { cache: 'no-store' })
+```
+
+## Metadata
+
+```tsx
+// Static
+export const metadata = { title: 'Page Title', description: '...' }
+
+// Dynamic
+export async function generateMetadata({ params }) {
+  return { title: `Post: ${params.slug}` }
+}
+```
+
+## Route Handlers (API)
+
+```ts
+// app/api/items/route.ts
+import { NextResponse } from 'next/server'
+
+export async function GET() {
+  return NextResponse.json({ items: [] })
+}
+
+export async function POST(request: Request) {
+  const body = await request.json()
+  return NextResponse.json({ created: body }, { status: 201 })
+}
+```
+
+## Rules
+
+- Prefer Server Components; push `'use client'` to the leaves
+- Use `next/image` for all `<img>` — never raw `<img>` tags
+- Use `next/link` for internal navigation — never `<a href>`
+- Co-locate component files next to the route segment that uses them
+- Type `params` and `searchParams` as `Promise<{...}>` (Next.js 15+)

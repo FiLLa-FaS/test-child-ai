@@ -1,0 +1,86 @@
+---
+description: TypeScript strict standards — types, generics, error handling, imports
+globs: src/**/*.{ts,tsx}
+alwaysApply: false
+---
+
+# TypeScript Standards
+
+## Strict Mode
+
+`tsconfig.json` must include `"strict": true`. Never use `any` — use `unknown` and narrow.
+
+```ts
+// ❌
+function process(data: any) { return data.value }
+
+// ✅
+function process(data: unknown) {
+  if (typeof data === 'object' && data !== null && 'value' in data) {
+    return data.value
+  }
+  throw new Error('Invalid data shape')
+}
+```
+
+## Types vs Interfaces
+
+- `type` for unions, primitives, mapped types, component props
+- `interface` for objects that may be extended
+
+```ts
+// Component props — type
+type ButtonProps = {
+  label: string
+  variant?: 'primary' | 'secondary'
+  onClick?: () => void
+}
+
+// Extensible entity — interface
+interface User {
+  id: string
+  email: string
+}
+interface AdminUser extends User {
+  role: 'admin'
+}
+```
+
+## Generics
+
+```ts
+// ✅ Descriptive generic names for non-trivial cases
+async function fetchData<TData>(url: string): Promise<TData> {
+  const res = await fetch(url)
+  if (!res.ok) throw new Error(`HTTP ${res.status}`)
+  return res.json() as Promise<TData>
+}
+```
+
+## Error Handling
+
+```ts
+// ✅ Always type caught errors as unknown
+try {
+  await riskyOp()
+} catch (err) {
+  const message = err instanceof Error ? err.message : 'Unknown error'
+  console.error('[riskyOp]', message)
+  throw err
+}
+```
+
+## Imports
+
+- Absolute imports via `@/*` alias (configured in `tsconfig.json`)
+- Group: 1) external libs → 2) internal `@/` → 3) relative
+
+```ts
+import { Suspense } from 'react'
+import Image from 'next/image'
+
+import { Button } from '@/components/ui/button'
+import { fetchUser } from '@/lib/api'
+
+import type { PageProps } from './types'
+```
