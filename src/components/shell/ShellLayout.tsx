@@ -45,7 +45,7 @@ export function ShellLayout({ children }: ShellLayoutProps) {
         aria-hidden
       >
         <img
-          src={publicPath("/images/png/mascot.png")}
+          src={publicPath("/images/webp/mascot.webp")}
           alt=""
           className="h-auto w-auto max-w-none"
           draggable={false}

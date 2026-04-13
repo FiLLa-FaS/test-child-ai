@@ -11,7 +11,7 @@ export type AchievementExplorer10IconProps = Omit<
 };
 
 /**
- * “Curious Explorer 10” achievement mark from `public/images/png/achievement-explorer10.png`.
+ * “Curious Explorer 10” achievement mark from `public/images/webp/achievement-explorer10.webp`.
  */
 export function AchievementExplorer10Icon({
   className,
@@ -20,7 +20,7 @@ export function AchievementExplorer10Icon({
 }: AchievementExplorer10IconProps) {
   return (
     <img
-      src={publicPath("/images/png/achievement-explorer10.png")}
+      src={publicPath("/images/webp/achievement-explorer10.webp")}
       alt={alt}
       role={alt ? undefined : "presentation"}
       className={cn("size-[54px] shrink-0 object-contain", className)}

@@ -20,7 +20,7 @@ export default function RootLayout({
         className={`h-full ${sfProRounded.className}`}
         style={{
           backgroundColor: "#fff",
-          backgroundImage: `url(${publicPath("/images/png/background.png")})`,
+          backgroundImage: `url(${publicPath("/images/webp/background.webp")})`,
           backgroundPosition: "center",
           backgroundRepeat: "no-repeat",
           backgroundSize: "cover",
