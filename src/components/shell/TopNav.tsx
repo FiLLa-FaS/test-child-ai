@@ -2,9 +2,9 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { NotificationsMenu } from "@/components/cortex/NotificationsMenu";
+import { NotificationsMenu } from "@/components/shell/NotificationsMenu";
 import { StreakStarIcon } from "@/components/icons";
-import { CORTEX_NAV_ITEMS, isCortexNavActive } from "@/lib/cortexNav";
+import { APP_NAV_ITEMS, isAppNavActive } from "@/lib/appNav";
 import { cn } from "@/lib/utils";
 
 type NavTabsProps = {
@@ -21,8 +21,8 @@ export function TopNavTabs({ className }: NavTabsProps) {
         className,
       )}
     >
-      {CORTEX_NAV_ITEMS.map((item) => {
-        const active = isCortexNavActive(pathname, item.href);
+      {APP_NAV_ITEMS.map((item) => {
+        const active = isAppNavActive(pathname, item.href);
         return (
           <Link
             key={item.href}

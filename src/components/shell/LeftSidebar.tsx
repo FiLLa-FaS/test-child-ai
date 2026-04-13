@@ -1,6 +1,6 @@
 "use client";
 
-import { CortexLogo } from "@/components/cortex/CortexLogo";
+import { AppLogo } from "@/components/shell/AppLogo";
 import { AccordionSection } from "@/components/ui/AccordionSection";
 
 const modes = [
@@ -53,7 +53,7 @@ export function LeftSidebarContent() {
     <>
       {/* Logo */}
       <div className="flex min-h-[73px] items-center justify-start px-4">
-        <CortexLogo />
+        <AppLogo />
       </div>
 
       {/* Mode cards */}

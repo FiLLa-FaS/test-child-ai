@@ -2,18 +2,18 @@
 
 import { useCallback, useEffect, useState, type ReactNode } from "react";
 import { cn } from "@/lib/utils";
-import { CortexLogo } from "@/components/cortex/CortexLogo";
-import { LeftSidebar, LeftSidebarContent } from "@/components/cortex/LeftSidebar";
-import { TopNav, TopNavActions } from "@/components/cortex/TopNav";
-import { MobileBottomNav } from "@/components/cortex/MobileBottomNav";
+import { AppLogo } from "@/components/shell/AppLogo";
+import { LeftSidebar, LeftSidebarContent } from "@/components/shell/LeftSidebar";
+import { TopNav, TopNavActions } from "@/components/shell/TopNav";
+import { MobileBottomNav } from "@/components/shell/MobileBottomNav";
 import { BurgerIcon } from "@/components/icons";
 import { useIsBelowLg } from "@/hooks/useMediaQuery";
 
-type CortexLayoutProps = {
+type ShellLayoutProps = {
   children: ReactNode;
 };
 
-export function CortexLayout({ children }: CortexLayoutProps) {
+export function ShellLayout({ children }: ShellLayoutProps) {
   const [menuOpen, setMenuOpen] = useState(false);
   const isBelowLg = useIsBelowLg();
 
@@ -66,21 +66,21 @@ export function CortexLayout({ children }: CortexLayoutProps) {
                 type="button"
                 className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg hover:bg-black/5"
                 aria-expanded={menuOpen}
-                aria-controls="cortex-mobile-menu"
+                aria-controls="shell-mobile-menu"
                 aria-label={menuOpen ? "Close menu" : "Open menu"}
                 onClick={() => setMenuOpen((o) => !o)}
               >
                 <BurgerIcon open={menuOpen} />
               </button>
 
-              <CortexLogo variant="toolbar" className="min-w-0 flex-1" />
+              <AppLogo variant="toolbar" className="min-w-0 flex-1" />
 
               <TopNavActions />
             </header>
 
             {/* Slide-over below lg: только контент левого сайдбара; анимация слева */}
             <div
-              id="cortex-mobile-menu"
+              id="shell-mobile-menu"
               className={cn(
                 "fixed inset-0 z-50 motion-reduce:transition-none",
                 menuOpen ? "pointer-events-auto" : "pointer-events-none",

@@ -1,11 +1,11 @@
-export const CORTEX_NAV_ITEMS = [
+export const APP_NAV_ITEMS = [
   { label: "HOME", href: "/" },
   { label: "CHAT", href: "/chat" },
   { label: "AVATAR", href: "/avatar" },
   { label: "REWARDS", href: "/rewards" },
 ] as const;
 
-export function isCortexNavActive(pathname: string, href: string): boolean {
+export function isAppNavActive(pathname: string, href: string): boolean {
   if (href === "/") {
     return pathname === "/" || pathname === "";
   }

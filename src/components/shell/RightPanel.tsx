@@ -1,5 +1,5 @@
 import { AchievementExplorer10Icon } from "@/components/icons";
-import { HelpInfoButton } from "@/components/cortex/HelpInfoButton";
+import { HelpInfoButton } from "@/components/shell/HelpInfoButton";
 import { cn } from "@/lib/utils";
 
 const LEVEL_PROGRESS_HELP = {

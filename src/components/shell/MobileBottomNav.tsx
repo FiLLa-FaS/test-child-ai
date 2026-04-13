@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { CORTEX_NAV_ITEMS, isCortexNavActive } from "@/lib/cortexNav";
+import { APP_NAV_ITEMS, isAppNavActive } from "@/lib/appNav";
 import { cn } from "@/lib/utils";
 
 export function MobileBottomNav() {
@@ -14,8 +14,8 @@ export function MobileBottomNav() {
         className="flex w-full max-w-lg items-stretch gap-0 rounded-[99px] bg-white p-1"
         aria-label="Primary"
       >
-        {CORTEX_NAV_ITEMS.map((item) => {
-          const active = isCortexNavActive(pathname, item.href);
+        {APP_NAV_ITEMS.map((item) => {
+          const active = isAppNavActive(pathname, item.href);
           return (
             <Link
               key={item.href}

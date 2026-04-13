@@ -1,5 +1,5 @@
-import { ChatArea } from "@/components/cortex/ChatArea";
-import { RightPanel } from "@/components/cortex/RightPanel";
+import { ChatArea } from "@/components/shell/ChatArea";
+import { RightPanel } from "@/components/shell/RightPanel";
 
 export default function HomePage() {
   return (

@@ -1,12 +1,12 @@
 import { cn } from "@/lib/utils";
 
-type CortexLogoProps = {
+type AppLogoProps = {
   className?: string;
   /** `toolbar` — мобильный верхний бар (скрывается от lg), меньший кегль, чтобы не заезжать на кнопки */
   variant?: "sidebar" | "toolbar";
 };
 
-export function CortexLogo({ className, variant = "sidebar" }: CortexLogoProps) {
+export function AppLogo({ className, variant = "sidebar" }: AppLogoProps) {
   return (
     <span
       className={cn(
