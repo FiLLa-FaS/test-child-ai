@@ -17,7 +17,6 @@ export function AppLogo({ className, variant = "sidebar" }: AppLogoProps) {
         className,
       )}
       style={{
-        fontFamily: '"SF Pro Rounded", ui-rounded, system-ui, sans-serif',
         fontWeight: 800,
       }}
     >

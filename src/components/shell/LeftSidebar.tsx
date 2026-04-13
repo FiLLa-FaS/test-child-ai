@@ -2,6 +2,7 @@
 
 import { AppLogo } from "@/components/shell/AppLogo";
 import { AccordionSection } from "@/components/ui/AccordionSection";
+import { publicPath } from "@/lib/publicPath";
 
 const modes = [
   {
@@ -65,7 +66,7 @@ export function LeftSidebarContent() {
               type="button"
               className="flex min-h-[105px] w-full cursor-pointer flex-col items-start justify-start rounded-[20px] p-[12px] text-left font-sans text-[24px] font-extrabold uppercase leading-[100%] tracking-normal transition-opacity hover:opacity-95 active:opacity-90"
               style={{
-                backgroundImage: `url(${mode.cardImage})`,
+                backgroundImage: `url(${publicPath(mode.cardImage)})`,
                 backgroundSize: "inherit",
                 backgroundPosition: "center",
                 backgroundRepeat: "no-repeat",

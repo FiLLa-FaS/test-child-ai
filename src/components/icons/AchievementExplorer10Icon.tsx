@@ -1,4 +1,5 @@
 import { cn } from "@/lib/utils";
+import { publicPath } from "@/lib/publicPath";
 import type { ImgHTMLAttributes } from "react";
 
 export type AchievementExplorer10IconProps = Omit<
@@ -19,7 +20,7 @@ export function AchievementExplorer10Icon({
 }: AchievementExplorer10IconProps) {
   return (
     <img
-      src="/images/png/achievement-explorer10.png"
+      src={publicPath("/images/png/achievement-explorer10.png")}
       alt={alt}
       role={alt ? undefined : "presentation"}
       className={cn("size-[54px] shrink-0 object-contain", className)}

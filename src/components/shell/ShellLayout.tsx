@@ -2,6 +2,7 @@
 
 import { useCallback, useEffect, useState, type ReactNode } from "react";
 import { cn } from "@/lib/utils";
+import { publicPath } from "@/lib/publicPath";
 import { AppLogo } from "@/components/shell/AppLogo";
 import { LeftSidebar, LeftSidebarContent } from "@/components/shell/LeftSidebar";
 import { TopNav, TopNavActions } from "@/components/shell/TopNav";
@@ -44,7 +45,7 @@ export function ShellLayout({ children }: ShellLayoutProps) {
         aria-hidden
       >
         <img
-          src="/images/png/mascot.png"
+          src={publicPath("/images/png/mascot.png")}
           alt=""
           className="h-auto w-auto max-w-none"
           draggable={false}

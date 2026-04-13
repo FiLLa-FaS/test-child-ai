@@ -1,97 +1,7 @@
 @import "tailwindcss";
 
-@font-face {
-  font-family: "SF Pro Rounded";
-  src:
-    url("/font/SFRounded-Thin.woff2") format("woff2"),
-    url("/font/SFRounded-Thin.woff") format("woff");
-  font-weight: 100;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "SF Pro Rounded";
-  src:
-    url("/font/SFRounded-Ultralight.woff2") format("woff2"),
-    url("/font/SFRounded-Ultralight.woff") format("woff");
-  font-weight: 200;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "SF Pro Rounded";
-  src:
-    url("/font/SFRounded-Light.woff2") format("woff2"),
-    url("/font/SFRounded-Light.woff") format("woff");
-  font-weight: 300;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "SF Pro Rounded";
-  src:
-    url("/font/SFRounded-Regular.woff2") format("woff2"),
-    url("/font/SFRounded-Regular.woff") format("woff");
-  font-weight: 400;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "SF Pro Rounded";
-  src:
-    url("/font/SFRounded-Medium.woff2") format("woff2"),
-    url("/font/SFRounded-Medium.woff") format("woff");
-  font-weight: 500;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "SF Pro Rounded";
-  src:
-    url("/font/SFRounded-Semibold.woff2") format("woff2"),
-    url("/font/SFRounded-Semibold.woff") format("woff");
-  font-weight: 600;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "SF Pro Rounded";
-  src:
-    url("/font/SFRounded-Bold.woff2") format("woff2"),
-    url("/font/SFRounded-Bold.woff") format("woff");
-  font-weight: 700;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "SF Pro Rounded";
-  src:
-    url("/font/SFRounded-Heavy.woff2") format("woff2"),
-    url("/font/SFRounded-Heavy.woff") format("woff");
-  font-weight: 800;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "SF Pro Rounded";
-  src:
-    url("/font/SFRounded-Black.woff2") format("woff2"),
-    url("/font/SFRounded-Black.woff") format("woff");
-  font-weight: 900;
-  font-style: normal;
-  font-display: swap;
-}
-
 @theme {
-  --font-sans: "SF Pro Rounded", -apple-system, BlinkMacSystemFont, "Helvetica Neue",
+  --font-sans: var(--font-sf-pro-rounded), -apple-system, BlinkMacSystemFont, "Helvetica Neue",
     system-ui, sans-serif;
 }
 
@@ -103,16 +13,9 @@ body {
 }
 
 body {
-  font-family: "SF Pro Rounded", -apple-system, BlinkMacSystemFont, "Helvetica Neue",
-    system-ui, sans-serif;
   color: #000;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: #fff;
-  background-image: url("/images/png/background.png");
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
 }
 
 * {
