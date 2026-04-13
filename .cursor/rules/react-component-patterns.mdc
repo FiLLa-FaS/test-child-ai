@@ -1,0 +1,78 @@
+---
+description: React component patterns — composition, props, hooks, performance
+globs: src/**/*.tsx
+alwaysApply: false
+---
+
+# React Component Patterns
+
+## Component Structure
+
+```tsx
+// ✅ Named export, typed props, descriptive file = component name
+type CardProps = {
+  title: string
+  description?: string
+  children?: React.ReactNode
+  className?: string
+}
+
+export function Card({ title, description, children, className }: CardProps) {
+  return (
+    <div className={cn('rounded-lg border p-6', className)}>
+      <h3 className="font-semibold text-lg">{title}</h3>
+      {description && <p className="text-gray-500 mt-1">{description}</p>}
+      {children}
+    </div>
+  )
+}
+```
+
+## Custom Hooks
+
+Extract stateful logic into `src/hooks/` or co-located `use*.ts` files:
+
+```ts
+// src/hooks/useLocalStorage.ts
+import { useState, useEffect } from 'react'
+
+export function useLocalStorage<T>(key: string, initial: T) {
+  const [value, setValue] = useState<T>(initial)
+
+  useEffect(() => {
+    const stored = localStorage.getItem(key)
+    if (stored) setValue(JSON.parse(stored) as T)
+  }, [key])
+
+  const set = (next: T) => {
+    setValue(next)
+    localStorage.setItem(key, JSON.stringify(next))
+  }
+
+  return [value, set] as const
+}
+```
+
+## Performance
+
+```tsx
+// ✅ Memoize expensive child renders
+import { memo, useCallback } from 'react'
+
+const ExpensiveList = memo(function ExpensiveList({ items }: { items: string[] }) {
+  return <ul>{items.map(i => <li key={i}>{i}</li>)}</ul>
+})
+
+// ✅ Stable callback references for frequently re-rendering parents
+const handleClick = useCallback(() => {
+  doSomething(id)
+}, [id])
+```
+
+## Rules
+
+- One component per file; filename = component name (PascalCase)
+- Default export only for page files (`app/**/page.tsx`); named exports elsewhere
+- Never mutate props or state directly
+- `key` on list items must be stable and unique — never array index for dynamic lists
+- Avoid `useEffect` for data fetching — use Server Components or SWR/React Query
